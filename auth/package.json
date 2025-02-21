@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts",
+    "check": "npx prettier . --check",
+    "format": "npx prettier . --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.21",
+    "@types/mongoose": "^5.11.96",
     "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
     "express-validator": "^7.2.1",
