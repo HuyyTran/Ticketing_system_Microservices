@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Password } from "../services/password";
 
 // An TS interfact that describes the properties
 // that are required to create a new User
@@ -30,6 +31,18 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+// middleware func implemented in mongoose
+// this will be ran before 'save' is called
+userSchema.pre("save", async function (done) {
+  // only hash the password if it has been modified
+  if (this.isModified("password")) {
+    const hashed = await Password.toHash(this.get("password"));
+    this.set("password", hashed);
+  }
+  done();
+});
+
 userSchema.statics.build = (attrs: UserAttrs) => {
   return new User(attrs);
 };
