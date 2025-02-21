@@ -18,12 +18,12 @@ router.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-       throw new RequestValidationError(errors.array());
+      throw new RequestValidationError(errors.array());
     }
-    console.log('Creating a new user... ')
+    console.log("Creating a new user... ");
     throw new DatabaseConnectionError();
     res.send({});
-  }
+  },
 );
 
 export { router as signupRouter };
