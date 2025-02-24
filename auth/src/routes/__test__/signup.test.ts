@@ -1,6 +1,5 @@
 import request from "supertest";
 import { app } from "../../app";
-import e from "express";
 
 it("returns a 201 on successful signup", async () => {
   await request(app)
@@ -67,13 +66,13 @@ it("disallows duplicate emails", async () => {
 });
 
 it("sets a cookie after successful signup", async () => {
-  const   response = await request(app)
+  const response = await request(app)
     .post("/api/users/signup")
     .send({
       email: "test@test.com",
-        password: "password",
+      password: "password",
     })
     .expect(201);
 
-    expect(response.get("Set-Cookie")).toBeDefined();
+  expect(response.get("Set-Cookie")).toBeDefined();
 });
