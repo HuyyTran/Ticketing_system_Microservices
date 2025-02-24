@@ -38,11 +38,13 @@ it("responds with a cookie when given valid credentials", async () => {
     })
     .expect(201);
 
-  await request(app)
+  const response = await request(app)
     .post("/api/users/signin")
     .send({
       email: "test@tesst.com",
       password: "password",
     })
-    .expect(400);
+    .expect(200);
+
+  expect(response.get("Set-Cookie")).toBeDefined();
 });
