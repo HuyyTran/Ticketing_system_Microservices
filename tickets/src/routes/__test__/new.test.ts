@@ -57,6 +57,8 @@ it("return an error if an invalid price is provided", async () => {
 });
 
 it("create a ticket with valid input", async () => {
+	// add in a check to ensure a ticket was saved
+
 	await request(app)
 		.post("/api/tickets")
 		.set("Cookie", global.signin())
@@ -64,5 +66,5 @@ it("create a ticket with valid input", async () => {
 			title: "random title",
 			price: 10,
 		})
-		.expect(200);
+		.expect(201);
 });
