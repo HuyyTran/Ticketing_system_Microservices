@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import { body } from "express-validator";
 import { Ticket } from "../models/ticket";
 import { NotFoundError } from "@datn242/common";
 
