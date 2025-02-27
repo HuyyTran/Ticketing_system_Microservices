@@ -25,7 +25,24 @@ it("returns a 401 if the user is not authenticated", async () => {
 		.expect(401);
 });
 
-it("returns a 404 if the user does not own the ticket", async () => {});
+it("returns a 404 if the user does not own the ticket", async () => {
+	const response = await request(app)
+		.post(`/api/tickets`)
+		.set("Cookie", global.signin())
+		.send({
+			title: "concert",
+			price: 20,
+		});
+
+	await request(app)
+		.put(`/api/tickets/${response.body.id}`)
+		.set("Cookie", global.signin())
+		.send({
+			title: "lfja3123",
+			price: 1000,
+		})
+		.expect(401);
+});
 
 it("returns a 404 if the user provides and invalid price or title", async () => {});
 

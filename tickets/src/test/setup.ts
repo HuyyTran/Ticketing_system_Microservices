@@ -36,7 +36,10 @@ afterAll(async () => {
 global.signin = () => {
 	// faking authentication in testing since we don't want to use the auth service interdependly
 	// Build a JWT payload. { id, email }
-	const payload = { id: "23sfdg8y723", email: "ticket@test.com" };
+	const payload = {
+		id: new mongoose.Types.ObjectId().toHexString(),
+		email: "ticket@test.com",
+	};
 
 	// Create the JWT!
 	const token = jwt.sign(payload, process.env.JWT_KEY!);
