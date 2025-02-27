@@ -5,18 +5,32 @@ import { Ticket } from '../models/ticket';
 
 const router = express.Router();
 
-router.put('/api/tickets/:id', requireAuth, async (req: Request, res: Response) => {
-  const ticket = await Ticket.findById(req.params.id);
+router.put(
+  '/api/tickets/:id',
+  requireAuth,
+  [
+    body('title').notEmpty().withMessage('Title must not be empty'),
+    body('price').isFloat({ gt: 0 }).withMessage('Price must be greater than 0'),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const ticket = await Ticket.findById(req.params.id);
 
-  if (!ticket) {
-    throw new NotFoundError();
-  }
+    if (!ticket) {
+      throw new NotFoundError();
+    }
 
-  if (ticket.userId !== req.currentUser!.id) {
-    throw new NotAuthorizedError();
-  }
+    if (ticket.userId !== req.currentUser!.id) {
+      throw new NotAuthorizedError();
+    }
 
-  res.send(ticket);
-});
+    ticket.set({
+      title: req.body.title,
+      price: req.body.price,
+    });
+    await ticket.save();
+    res.send(ticket);
+  },
+);
 
 export { router as updateTicketRouter };
