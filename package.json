@@ -1,21 +1,21 @@
 {
-	"name": "ticketing_system_microservices",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"check": "npx prettier . --check",
-		"format": "npx prettier . --write"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/HuyyTran/Ticketing_system_Microservices.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/HuyyTran/Ticketing_system_Microservices/issues"
-	},
-	"homepage": "https://github.com/HuyyTran/Ticketing_system_Microservices#readme"
+  "name": "ticketing_system_microservices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "check": "npx prettier . --check",
+    "format": "npx prettier . --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuyyTran/Ticketing_system_Microservices.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HuyyTran/Ticketing_system_Microservices/issues"
+  },
+  "homepage": "https://github.com/HuyyTran/Ticketing_system_Microservices#readme"
 }

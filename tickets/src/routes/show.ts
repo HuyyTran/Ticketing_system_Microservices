@@ -1,17 +1,17 @@
-import express, { Request, Response } from "express";
-import { Ticket } from "../models/ticket";
-import { NotFoundError } from "@datn242/common";
+import express, { Request, Response } from 'express';
+import { Ticket } from '../models/ticket';
+import { NotFoundError } from '@datn242/common';
 
-const router = require("express").Router();
+const router = require('express').Router();
 
-router.get("/api/tickets/:id", async (req: Request, res: Response) => {
-	const ticket = await Ticket.findById(req.params.id);
+router.get('/api/tickets/:id', async (req: Request, res: Response) => {
+  const ticket = await Ticket.findById(req.params.id);
 
-	if (!ticket) {
-		throw new NotFoundError();
-	}
+  if (!ticket) {
+    throw new NotFoundError();
+  }
 
-	res.send(ticket);
+  res.send(ticket);
 });
 
 export { router as showTicketRouter };
