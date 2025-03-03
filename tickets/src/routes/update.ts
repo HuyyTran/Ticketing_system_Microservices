@@ -1,6 +1,11 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest, NotFoundError, requireAuth, NotAuthorizedError } from '@datn242/common';
+import {
+  validateRequest,
+  NotFoundError,
+  requireAuth,
+  NotAuthorizedError,
+} from '@datn242/common';
 import { Ticket } from '../models/ticket';
 
 const router = express.Router();
@@ -10,7 +15,9 @@ router.put(
   requireAuth,
   [
     body('title').notEmpty().withMessage('Title must not be empty'),
-    body('price').isFloat({ gt: 0 }).withMessage('Price must be greater than 0'),
+    body('price')
+      .isFloat({ gt: 0 })
+      .withMessage('Price must be greater than 0'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {

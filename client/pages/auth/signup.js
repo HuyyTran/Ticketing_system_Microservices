@@ -26,7 +26,11 @@ export default () => {
       <h1>Sign Up</h1>
       <div className="form-group">
         <label>Email Address</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="form-control"
+        />
       </div>
       <div className="form-group">
         <label>Password</label>
