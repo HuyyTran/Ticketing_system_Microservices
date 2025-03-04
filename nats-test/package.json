@@ -1,0 +1,28 @@
+{
+  "name": "nats-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "npx prettier . --write",
+    "publish": "ts-node-dev --rs --notify false src/publisher.ts",
+    "listen": "ts-node-dev --rs --notify false src/listener.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuyyTran/nats-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HuyyTran/nats-test/issues"
+  },
+  "homepage": "https://github.com/HuyyTran/nats-test#readme",
+  "dependencies": {
+    "@types/node": "^22.13.5",
+    "node-nats-streaming": "^0.3.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.3"
+  }
+}
