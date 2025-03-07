@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/HuyyTran/nats-test#readme",
   "dependencies": {
+    "@datn242/common": "^8.8.18",
     "@types/node": "^22.13.5",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^2.0.0",
