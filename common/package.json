@@ -1,6 +1,6 @@
 {
   "name": "@datn242/common",
-  "version": "8.8.22",
+  "version": "8.8.23",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
