@@ -13,11 +13,10 @@ app.set('trust proxy', true);
 app.use(json());
 app.use(
   cookieSession({
-    signed: false, // disable encryption
-    secure: process.env.NODE_ENV !== 'test', // only use cookies over https, unless in test environment
+    signed: false,
+    secure: process.env.NODE_ENV !== 'test',
   }),
 );
-
 app.use(currentUser);
 
 app.use(createTicketRouter);

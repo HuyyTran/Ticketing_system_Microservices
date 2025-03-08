@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
-import { Ticket } from '../models/ticket';
 import { NotFoundError } from '@datn242/common';
+import { Ticket } from '../models/ticket';
 
-const router = require('express').Router();
+const router = express.Router();
 
 router.get('/api/tickets/:id', async (req: Request, res: Response) => {
   const ticket = await Ticket.findById(req.params.id);

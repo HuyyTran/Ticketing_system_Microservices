@@ -1,5 +1,4 @@
 import express from 'express';
-
 import { currentUser } from '@datn242/common';
 
 const router = express.Router();

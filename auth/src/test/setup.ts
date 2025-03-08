@@ -9,9 +9,12 @@ declare global {
 
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = 'asdfdsa';
-  mongo = await MongoMemoryServer.create();
+  process.env.JWT_KEY = 'asdfasdf';
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+  const mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
+
   await mongoose.connect(mongoUri, {});
 });
 
@@ -49,6 +52,5 @@ global.signin = async () => {
   if (!cookie) {
     throw new Error('Failed to get cookie from response');
   }
-
   return cookie;
 };

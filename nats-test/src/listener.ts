@@ -1,4 +1,4 @@
-import nats, { Message, Stan } from 'node-nats-streaming';
+import nats from 'node-nats-streaming';
 import { randomBytes } from 'crypto';
 import { TicketCreatedListener } from './events/ticket-created-listener';
 
@@ -12,7 +12,7 @@ stan.on('connect', () => {
   console.log('Listener connected to NATS');
 
   stan.on('close', () => {
-    console.log('NATS connection closed');
+    console.log('NATS connection closed!');
     process.exit();
   });
 

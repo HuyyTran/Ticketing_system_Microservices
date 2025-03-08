@@ -8,11 +8,16 @@ declare global {
   var signin: () => string[];
 }
 
+jest.mock('../nats-wrapper');
+
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = 'asdfdsa';
-  mongo = await MongoMemoryServer.create();
+  process.env.JWT_KEY = 'asdfasdf';
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+  const mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
+
   await mongoose.connect(mongoUri, {});
 });
 
@@ -34,17 +39,16 @@ afterAll(async () => {
 });
 
 global.signin = () => {
-  // faking authentication in testing since we don't want to use the auth service interdependly
-  // Build a JWT payload. { id, email }
+  // Build a JWT payload.  { id, email }
   const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
-    email: 'ticket@test.com',
+    email: 'test@test.com',
   };
 
   // Create the JWT!
   const token = jwt.sign(payload, process.env.JWT_KEY!);
 
-  // Build session object {jwt: MY_JWT}
+  // Build session Object. { jwt: MY_JWT }
   const session = { jwt: token };
 
   // Turn that session into JSON

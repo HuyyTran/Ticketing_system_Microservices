@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-
 import { validateRequest, BadRequestError } from '@datn242/common';
+
 import { User } from '../models/user';
 
 const router = express.Router();
@@ -38,7 +38,7 @@ router.post(
       process.env.JWT_KEY!,
     );
 
-    // store it on session object
+    // Store it on session object
     req.session = {
       jwt: userJwt,
     };

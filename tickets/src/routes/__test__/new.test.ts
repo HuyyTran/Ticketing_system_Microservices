@@ -2,26 +2,26 @@ import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
 
-jest.mock('../../nats-wrapper');
-
 it('has a route handler listening to /api/tickets for post requests', async () => {
   const response = await request(app).post('/api/tickets').send({});
+
   expect(response.status).not.toEqual(404);
 });
 
-it('can only be accessed if user is signed in', async () => {
+it('can only be accessed if the user is signed in', async () => {
   await request(app).post('/api/tickets').send({}).expect(401);
 });
 
-it('return status other than 401 if user is signin', async () => {
+it('returns a status other than 401 if the user is signed in', async () => {
   const response = await request(app)
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({});
+
   expect(response.status).not.toEqual(401);
 });
 
-it('return an error if an invalid title is provided', async () => {
+it('returns an error if an invalid title is provided', async () => {
   await request(app)
     .post('/api/tickets')
     .set('Cookie', global.signin())
@@ -40,13 +40,13 @@ it('return an error if an invalid title is provided', async () => {
     .expect(400);
 });
 
-it('return an error if an invalid price is provided', async () => {
+it('returns an error if an invalid price is provided', async () => {
   await request(app)
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({
-      title: 'random title',
-      price: -1010,
+      title: 'asldkjf',
+      price: -10,
     })
     .expect(400);
 
@@ -54,28 +54,28 @@ it('return an error if an invalid price is provided', async () => {
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({
-      title: 'random title',
+      title: 'laskdfj',
     })
     .expect(400);
 });
 
-it('create a ticket with valid input', async () => {
+it('creates a ticket with valid inputs', async () => {
   let tickets = await Ticket.find({});
   expect(tickets.length).toEqual(0);
-  const title = 'random title';
-  const price = 10;
+
+  const title = 'asldkfj';
 
   await request(app)
     .post('/api/tickets')
     .set('Cookie', global.signin())
     .send({
-      title: title,
-      price: price,
+      title,
+      price: 20,
     })
     .expect(201);
 
   tickets = await Ticket.find({});
   expect(tickets.length).toEqual(1);
-  expect(tickets[0].price).toEqual(price);
+  expect(tickets[0].price).toEqual(20);
   expect(tickets[0].title).toEqual(title);
 });
