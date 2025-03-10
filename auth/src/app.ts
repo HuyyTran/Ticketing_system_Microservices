@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
@@ -28,6 +28,9 @@ app.all('*', async (req, res) => {
   throw new NotFoundError();
 });
 
-app.use(errorHandler);
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  errorHandler(err, req, res, next);
+});
+
 
 export { app };
