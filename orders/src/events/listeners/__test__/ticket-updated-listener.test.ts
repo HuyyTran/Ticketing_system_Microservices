@@ -32,6 +32,6 @@ const setup = async () => {
   return { msg, data, ticket, listener };
 };
 
-it('find, update and save a ticket', () => {});
+it('find, update and save a ticket', async () => {});
 
-it('acks the message', () => {});
+it('acks the message', async () => {});
